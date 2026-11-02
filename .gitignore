@@ -1,0 +1,32 @@
+# Secrets — never commit the real API key
+MenuApp/Secrets.swift
+
+# Xcode
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+xcuserdata/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+Packages/
+Package.resolved
+
+# CocoaPods / Carthage (not used today, but cheap to ignore)
+Pods/
+Carthage/Build/
+
+# macOS junk
+.DS_Store
+*.swp
+
+# Supabase CLI scratch — version stamps and link state the tool rewrites on every run.
+supabase/.temp/
+
+# Build-time copy of the app's data (scripts/seed.sh): restaurant content, never committed.
+Seed/*
+!Seed/.gitkeep
+Seed.tmp/

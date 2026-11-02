@@ -1,0 +1,752 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06CAFD6DEF080B85063E3EC2 /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7292BC43630422959E485F11 /* SupabaseClient.swift */; };
+		07FDBA56C7904C77BFFEA71B /* WatchKeySync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F703B5ED32463FE55A5B89 /* WatchKeySync.swift */; };
+		0A448870CE5DCA5930A2901F /* RestockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38642F2EF1365169ED273E39 /* RestockListView.swift */; };
+		0CB8E52AF2A3359CFBF37B1E /* Secrets.swift.example in Resources */ = {isa = PBXBuildFile; fileRef = 19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */; };
+		0D713FAC0ADDB1FAF7C1815A /* MenuWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F96327D5F6E573D6F837B40F /* MenuWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1677B2944EC1775A1A344345 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2834B352A3EFCE7914F7844 /* AppLogger.swift */; };
+		1B9A378DE03C5756244AAAB1 /* Seed in Resources */ = {isa = PBXBuildFile; fileRef = ADF9068C96D178CD447EF78A /* Seed */; };
+		1CDB26870512834ACC639F73 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A13A42F42E68D62E6D5EF /* SettingsView.swift */; };
+		20D57FFCDB5A3EB914CF4DDC /* PhoneKeyReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EA6A66EB1B8008C233E774 /* PhoneKeyReceiver.swift */; };
+		23349182EEA8A961E665ACE3 /* VoiceCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F905EE043413621701F8 /* VoiceCapture.swift */; };
+		23EF7A5C5769AEC516B9B259 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B075B033F5D30D446288E3 /* Secrets.swift */; };
+		266209ABDB09F5926A3347CD /* RestockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A64E8D91E511729CD41646 /* RestockModels.swift */; };
+		2CCF5422A8B5B6A47A6D685D /* WatchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D51CF852A8477526C45307 /* WatchSettingsView.swift */; };
+		2CF57249FA6335ED3B2B3F48 /* WineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AD8B2B3CC3A38BB1606480 /* WineDetailView.swift */; };
+		303969083D8B1DD85292F0F1 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B075B033F5D30D446288E3 /* Secrets.swift */; };
+		33D04EB31C914F76E1B0A5EA /* MenuWatchWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D8F2E0430D896CC843507CB3 /* MenuWatchWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3A8FF966D311C0103A62601F /* CocktailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E7195ED58294BB30148EDD /* CocktailsListView.swift */; };
+		3ED35655794976F662609109 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BB4E75E069733D23E59CC /* WatchContentView.swift */; };
+		404019C0C698AAA1F544545B /* ChatEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5159463CCD6F85625950D2 /* ChatEngine.swift */; };
+		49A10E2E97888F129B9F5228 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B4759428DB3198FD77FA0 /* RemoteImage.swift */; };
+		4F30F32F67AEBF5D044F63C9 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2834B352A3EFCE7914F7844 /* AppLogger.swift */; };
+		5085BFA71BB01F8C824936D2 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */; };
+		50946340D3A048FB8E60EF48 /* AnthropicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406B4F58B54426428A8C54B /* AnthropicClient.swift */; };
+		51E308AB541B5224A1734863 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47299703DB80CFC80681FA1D /* Connectivity.swift */; };
+		551241C184C5EEEEEBEA57B7 /* StayAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5AA01CAC3B89B22B0ED3A9 /* StayAwake.swift */; };
+		59FC0D82F8358C9977B3FB51 /* APIKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE6B6B9B0D36176A90EDBE /* APIKeyStore.swift */; };
+		5ABC12700FFEC6FEBFED2E50 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C916CEAF9285AF945A3B936 /* Orders.swift */; };
+		601C3181F4DB3922BBAA4771 /* WatchChatHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B3C8D561DC767FCD7F72E /* WatchChatHistory.swift */; };
+		6E861126DE1EF3D880C2BC0F /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905CA1E5BFA215B9797AB7 /* Recorder.swift */; };
+		709DF7497E87BF68D8BA46D2 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F3712011ED0A6589A98E3 /* OrdersListView.swift */; };
+		77136A776E8BA4725D07A6D6 /* VoiceBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FA8C2726FB2BCD024CCD90 /* VoiceBorder.swift */; };
+		77FA750D9DC49C7F53F2B231 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C916CEAF9285AF945A3B936 /* Orders.swift */; };
+		789342F56B62DEAB4B19E368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F3FAABB6F1CDE9FA00212 /* Assets.xcassets */; };
+		7BC688E8506ECD0F517E9546 /* DishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA3F6F1D6BCCFD82E7CB3E /* DishDetailView.swift */; };
+		7C418FDF5FBEBDF00323577D /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7292BC43630422959E485F11 /* SupabaseClient.swift */; };
+		7F2A9CCDF1257481D0BC1089 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F312A5D9E609E64842A5273 /* Assets.xcassets */; };
+		7F991DA519F51881CA97CE0A /* MenuModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD760F0CE05E254709F422 /* MenuModels.swift */; };
+		82F01EAE4D25F27C2A750B3D /* Seed in Resources */ = {isa = PBXBuildFile; fileRef = ADF9068C96D178CD447EF78A /* Seed */; };
+		8FEB547408CE0EAF13999CE3 /* ChatEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5159463CCD6F85625950D2 /* ChatEngine.swift */; };
+		943CB814A95894A7052DA1B4 /* WineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F643FEC1FD2652B859D3A /* WineModels.swift */; };
+		9AC0E91D17C2472E636A69FC /* MenuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743F2D4C684D6FC4EF7D9399 /* MenuApp.swift */; };
+		9B84E9521BE4C9A707EAB95B /* OpenAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C33FFA31EF14720F97CC46 /* OpenAppIntent.swift */; };
+		A97BDC8D45C0BCDCF1F6E203 /* AnthropicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406B4F58B54426428A8C54B /* AnthropicClient.swift */; };
+		AEA78E2939E47709675BF914 /* WatchOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1586166DD2F04DBA76641 /* WatchOrdersView.swift */; };
+		B2AD5D5221EA8FB1D901FA45 /* WineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269079311E9AE5347C3372E /* WineListView.swift */; };
+		BA97BEB2ECF814B880C83229 /* MenuWatchWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D0B33E63AC07DFF449264 /* MenuWatchWidgets.swift */; };
+		BC89DB30B32E67CBB53272D3 /* MenuModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD760F0CE05E254709F422 /* MenuModels.swift */; };
+		BE5C65431F3BEA55E07783F9 /* ConfigModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F76F497D15DF13353AB552 /* ConfigModels.swift */; };
+		BE6CFEE452DF95C0139CEFE1 /* CocktailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F05DC25F62F4315AC66A53 /* CocktailModels.swift */; };
+		C34E0C77C07468B905DE0324 /* RestockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A64E8D91E511729CD41646 /* RestockModels.swift */; };
+		C8B0DF1C37C1E97BB9E7B6E9 /* LiquorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4214A61372A61820DEC1D /* LiquorListView.swift */; };
+		C9F377AD5A3EA67E06D2F909 /* WatchChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A12FCD359229A535EEC3C92 /* WatchChatView.swift */; };
+		D11CA693F105C6D935D990F6 /* CocktailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F05DC25F62F4315AC66A53 /* CocktailModels.swift */; };
+		DE953380A1B0328578B3C763 /* APIKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE6B6B9B0D36176A90EDBE /* APIKeyStore.swift */; };
+		E6D115859229EB4E149121AD /* WatchRestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38964BAD7474E8AB2B12EC68 /* WatchRestockView.swift */; };
+		E7C1FB282CFABCCB6A807980 /* WineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F643FEC1FD2652B859D3A /* WineModels.swift */; };
+		E93997B9F83C4E30548DD7B4 /* OpenAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C33FFA31EF14720F97CC46 /* OpenAppIntent.swift */; };
+		EECFCA6F90719A0C892E2EB1 /* MenuWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B028D80681A2858E746B6 /* MenuWatchApp.swift */; };
+		F34A12BAE4D0A44193E51463 /* ConfigModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F76F497D15DF13353AB552 /* ConfigModels.swift */; };
+		F5B652B5FE5579A4CF777E90 /* OrderOutbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE166629FFD816BA8D698AFF /* OrderOutbox.swift */; };
+		F85C4456AA010A6D610BC047 /* WatchAIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678D53F3F8E45DE4432E5638 /* WatchAIClient.swift */; };
+		FDBEF9CFCD73BD57A5FD1CFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B98EF2249766048EE3CEA /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3828E9F83329E7F90B426C9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AA90E9163521C3E089B0670 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E8B1A4072D1878E542705C2;
+			remoteInfo = MenuWatchWidgets;
+		};
+		F8D0FCB35D4C3A779BA76A84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AA90E9163521C3E089B0670 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 199B36DCAE40FAE7DAE8B0F6;
+			remoteInfo = MenuWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		315183552119B76F63D4BA40 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				0D713FAC0ADDB1FAF7C1815A /* MenuWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE4F4FD51FCD1FE513F55BDE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				33D04EB31C914F76E1B0A5EA /* MenuWatchWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		02F1586166DD2F04DBA76641 /* WatchOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOrdersView.swift; sourceTree = "<group>"; };
+		0B1F3FAABB6F1CDE9FA00212 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0ECA3F6F1D6BCCFD82E7CB3E /* DishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailView.swift; sourceTree = "<group>"; };
+		0F312A5D9E609E64842A5273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		129F3712011ED0A6589A98E3 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
+		1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
+		19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */ = {isa = PBXFileReference; path = Secrets.swift.example; sourceTree = "<group>"; };
+		1A5AA01CAC3B89B22B0ED3A9 /* StayAwake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayAwake.swift; sourceTree = "<group>"; };
+		1B905CA1E5BFA215B9797AB7 /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		1C5159463CCD6F85625950D2 /* ChatEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEngine.swift; sourceTree = "<group>"; };
+		22AD760F0CE05E254709F422 /* MenuModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModels.swift; sourceTree = "<group>"; };
+		23C33FFA31EF14720F97CC46 /* OpenAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppIntent.swift; sourceTree = "<group>"; };
+		28E7195ED58294BB30148EDD /* CocktailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListView.swift; sourceTree = "<group>"; };
+		316B3C8D561DC767FCD7F72E /* WatchChatHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchChatHistory.swift; sourceTree = "<group>"; };
+		34F05DC25F62F4315AC66A53 /* CocktailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModels.swift; sourceTree = "<group>"; };
+		38642F2EF1365169ED273E39 /* RestockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockListView.swift; sourceTree = "<group>"; };
+		38964BAD7474E8AB2B12EC68 /* WatchRestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRestockView.swift; sourceTree = "<group>"; };
+		3B0BB4E75E069733D23E59CC /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
+		3D3BC46C3F9B74B39A1B9579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		41D51CF852A8477526C45307 /* WatchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSettingsView.swift; sourceTree = "<group>"; };
+		47299703DB80CFC80681FA1D /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		47F76F497D15DF13353AB552 /* ConfigModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigModels.swift; sourceTree = "<group>"; };
+		678D53F3F8E45DE4432E5638 /* WatchAIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAIClient.swift; sourceTree = "<group>"; };
+		7292BC43630422959E485F11 /* SupabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseClient.swift; sourceTree = "<group>"; };
+		743F2D4C684D6FC4EF7D9399 /* MenuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuApp.swift; sourceTree = "<group>"; };
+		7A12FCD359229A535EEC3C92 /* WatchChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchChatView.swift; sourceTree = "<group>"; };
+		7A9A13A42F42E68D62E6D5EF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7C1B4759428DB3198FD77FA0 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		84AD8B2B3CC3A38BB1606480 /* WineDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineDetailView.swift; sourceTree = "<group>"; };
+		888D0B33E63AC07DFF449264 /* MenuWatchWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuWatchWidgets.swift; sourceTree = "<group>"; };
+		8BEE6B6B9B0D36176A90EDBE /* APIKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyStore.swift; sourceTree = "<group>"; };
+		8C307C35211A5BFC0D0A0C47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		94F703B5ED32463FE55A5B89 /* WatchKeySync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKeySync.swift; sourceTree = "<group>"; };
+		98FA8C2726FB2BCD024CCD90 /* VoiceBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBorder.swift; sourceTree = "<group>"; };
+		9C916CEAF9285AF945A3B936 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		A269079311E9AE5347C3372E /* WineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineListView.swift; sourceTree = "<group>"; };
+		A2B5DC62EE87896737CB73C4 /* Menu.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Menu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A836F905EE043413621701F8 /* VoiceCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCapture.swift; sourceTree = "<group>"; };
+		ADF9068C96D178CD447EF78A /* Seed */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Seed; sourceTree = SOURCE_ROOT; };
+		D59F643FEC1FD2652B859D3A /* WineModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineModels.swift; sourceTree = "<group>"; };
+		D8F2E0430D896CC843507CB3 /* MenuWatchWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MenuWatchWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1EA6A66EB1B8008C233E774 /* PhoneKeyReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKeyReceiver.swift; sourceTree = "<group>"; };
+		E4A64E8D91E511729CD41646 /* RestockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockModels.swift; sourceTree = "<group>"; };
+		E4B075B033F5D30D446288E3 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		E85B98EF2249766048EE3CEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F2834B352A3EFCE7914F7844 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		F406B4F58B54426428A8C54B /* AnthropicClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicClient.swift; sourceTree = "<group>"; };
+		F5C5F0410D8D4AA0F92858BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F94B028D80681A2858E746B6 /* MenuWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuWatchApp.swift; sourceTree = "<group>"; };
+		F96327D5F6E573D6F837B40F /* MenuWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE166629FFD816BA8D698AFF /* OrderOutbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOutbox.swift; sourceTree = "<group>"; };
+		FFA4214A61372A61820DEC1D /* LiquorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorListView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0AD64D754844FCCDA171917A /* MenuWatchWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				3D3BC46C3F9B74B39A1B9579 /* Info.plist */,
+				888D0B33E63AC07DFF449264 /* MenuWatchWidgets.swift */,
+				23C33FFA31EF14720F97CC46 /* OpenAppIntent.swift */,
+			);
+			path = MenuWatchWidgets;
+			sourceTree = "<group>";
+		};
+		1B59CAD09BEB625AF0A81BA7 /* MenuApp */ = {
+			isa = PBXGroup;
+			children = (
+				F406B4F58B54426428A8C54B /* AnthropicClient.swift */,
+				8BEE6B6B9B0D36176A90EDBE /* APIKeyStore.swift */,
+				F2834B352A3EFCE7914F7844 /* AppLogger.swift */,
+				0B1F3FAABB6F1CDE9FA00212 /* Assets.xcassets */,
+				1C5159463CCD6F85625950D2 /* ChatEngine.swift */,
+				34F05DC25F62F4315AC66A53 /* CocktailModels.swift */,
+				28E7195ED58294BB30148EDD /* CocktailsListView.swift */,
+				47F76F497D15DF13353AB552 /* ConfigModels.swift */,
+				E85B98EF2249766048EE3CEA /* ContentView.swift */,
+				0ECA3F6F1D6BCCFD82E7CB3E /* DishDetailView.swift */,
+				F5C5F0410D8D4AA0F92858BA /* Info.plist */,
+				FFA4214A61372A61820DEC1D /* LiquorListView.swift */,
+				743F2D4C684D6FC4EF7D9399 /* MenuApp.swift */,
+				22AD760F0CE05E254709F422 /* MenuModels.swift */,
+				9C916CEAF9285AF945A3B936 /* Orders.swift */,
+				129F3712011ED0A6589A98E3 /* OrdersListView.swift */,
+				7C1B4759428DB3198FD77FA0 /* RemoteImage.swift */,
+				38642F2EF1365169ED273E39 /* RestockListView.swift */,
+				E4A64E8D91E511729CD41646 /* RestockModels.swift */,
+				E4B075B033F5D30D446288E3 /* Secrets.swift */,
+				19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */,
+				7A9A13A42F42E68D62E6D5EF /* SettingsView.swift */,
+				7292BC43630422959E485F11 /* SupabaseClient.swift */,
+				1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */,
+				94F703B5ED32463FE55A5B89 /* WatchKeySync.swift */,
+				84AD8B2B3CC3A38BB1606480 /* WineDetailView.swift */,
+				A269079311E9AE5347C3372E /* WineListView.swift */,
+				D59F643FEC1FD2652B859D3A /* WineModels.swift */,
+			);
+			path = MenuApp;
+			sourceTree = "<group>";
+		};
+		5E851FEF0D381688684E1A79 /* MenuWatch */ = {
+			isa = PBXGroup;
+			children = (
+				0F312A5D9E609E64842A5273 /* Assets.xcassets */,
+				47299703DB80CFC80681FA1D /* Connectivity.swift */,
+				8C307C35211A5BFC0D0A0C47 /* Info.plist */,
+				F94B028D80681A2858E746B6 /* MenuWatchApp.swift */,
+				FE166629FFD816BA8D698AFF /* OrderOutbox.swift */,
+				E1EA6A66EB1B8008C233E774 /* PhoneKeyReceiver.swift */,
+				1B905CA1E5BFA215B9797AB7 /* Recorder.swift */,
+				1A5AA01CAC3B89B22B0ED3A9 /* StayAwake.swift */,
+				98FA8C2726FB2BCD024CCD90 /* VoiceBorder.swift */,
+				A836F905EE043413621701F8 /* VoiceCapture.swift */,
+				678D53F3F8E45DE4432E5638 /* WatchAIClient.swift */,
+				316B3C8D561DC767FCD7F72E /* WatchChatHistory.swift */,
+				7A12FCD359229A535EEC3C92 /* WatchChatView.swift */,
+				3B0BB4E75E069733D23E59CC /* WatchContentView.swift */,
+				02F1586166DD2F04DBA76641 /* WatchOrdersView.swift */,
+				38964BAD7474E8AB2B12EC68 /* WatchRestockView.swift */,
+				41D51CF852A8477526C45307 /* WatchSettingsView.swift */,
+			);
+			path = MenuWatch;
+			sourceTree = "<group>";
+		};
+		8E6081D103F3EE4E6E87EDAC = {
+			isa = PBXGroup;
+			children = (
+				ADF9068C96D178CD447EF78A /* Seed */,
+				1B59CAD09BEB625AF0A81BA7 /* MenuApp */,
+				5E851FEF0D381688684E1A79 /* MenuWatch */,
+				0AD64D754844FCCDA171917A /* MenuWatchWidgets */,
+				BD692C2BE70558A5699DB9CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BD692C2BE70558A5699DB9CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2B5DC62EE87896737CB73C4 /* Menu.app */,
+				F96327D5F6E573D6F837B40F /* MenuWatch.app */,
+				D8F2E0430D896CC843507CB3 /* MenuWatchWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		199B36DCAE40FAE7DAE8B0F6 /* MenuWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EA47D74DD9A2F806A5376EC /* Build configuration list for PBXNativeTarget "MenuWatch" */;
+			buildPhases = (
+				F1886E0F90EE6B0C3DEF2C73 /* Sources */,
+				2D3458F7D4FAE37AD6399E75 /* Resources */,
+				AE4F4FD51FCD1FE513F55BDE /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65D6087EB1E9AA5BD75D7366 /* PBXTargetDependency */,
+			);
+			name = MenuWatch;
+			packageProductDependencies = (
+			);
+			productName = MenuWatch;
+			productReference = F96327D5F6E573D6F837B40F /* MenuWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		38441FA57040808A32D17322 /* Menu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBA7EB3C197CB837681988F4 /* Build configuration list for PBXNativeTarget "Menu" */;
+			buildPhases = (
+				BF58F29508772349A267FD8B /* Sources */,
+				9698C82C99EE89EC5623A361 /* Resources */,
+				315183552119B76F63D4BA40 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEAFB2620D03D8B0B1C153D2 /* PBXTargetDependency */,
+			);
+			name = Menu;
+			packageProductDependencies = (
+			);
+			productName = Menu;
+			productReference = A2B5DC62EE87896737CB73C4 /* Menu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4E8B1A4072D1878E542705C2 /* MenuWatchWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 868200DC08FE959FE8FED208 /* Build configuration list for PBXNativeTarget "MenuWatchWidgets" */;
+			buildPhases = (
+				FE3A83242D03B47511DD5492 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MenuWatchWidgets;
+			packageProductDependencies = (
+			);
+			productName = MenuWatchWidgets;
+			productReference = D8F2E0430D896CC843507CB3 /* MenuWatchWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0AA90E9163521C3E089B0670 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					199B36DCAE40FAE7DAE8B0F6 = {
+						DevelopmentTeam = XMH4AVFC78;
+						ProvisioningStyle = Automatic;
+					};
+					38441FA57040808A32D17322 = {
+						DevelopmentTeam = XMH4AVFC78;
+						ProvisioningStyle = Automatic;
+					};
+					4E8B1A4072D1878E542705C2 = {
+						DevelopmentTeam = XMH4AVFC78;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BEF4364E94C14D3EDCDD2803 /* Build configuration list for PBXProject "Menu" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8E6081D103F3EE4E6E87EDAC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				38441FA57040808A32D17322 /* Menu */,
+				199B36DCAE40FAE7DAE8B0F6 /* MenuWatch */,
+				4E8B1A4072D1878E542705C2 /* MenuWatchWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D3458F7D4FAE37AD6399E75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F2A9CCDF1257481D0BC1089 /* Assets.xcassets in Resources */,
+				1B9A378DE03C5756244AAAB1 /* Seed in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9698C82C99EE89EC5623A361 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				789342F56B62DEAB4B19E368 /* Assets.xcassets in Resources */,
+				0CB8E52AF2A3359CFBF37B1E /* Secrets.swift.example in Resources */,
+				82F01EAE4D25F27C2A750B3D /* Seed in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF58F29508772349A267FD8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59FC0D82F8358C9977B3FB51 /* APIKeyStore.swift in Sources */,
+				A97BDC8D45C0BCDCF1F6E203 /* AnthropicClient.swift in Sources */,
+				1677B2944EC1775A1A344345 /* AppLogger.swift in Sources */,
+				8FEB547408CE0EAF13999CE3 /* ChatEngine.swift in Sources */,
+				D11CA693F105C6D935D990F6 /* CocktailModels.swift in Sources */,
+				3A8FF966D311C0103A62601F /* CocktailsListView.swift in Sources */,
+				F34A12BAE4D0A44193E51463 /* ConfigModels.swift in Sources */,
+				FDBEF9CFCD73BD57A5FD1CFB /* ContentView.swift in Sources */,
+				7BC688E8506ECD0F517E9546 /* DishDetailView.swift in Sources */,
+				C8B0DF1C37C1E97BB9E7B6E9 /* LiquorListView.swift in Sources */,
+				9AC0E91D17C2472E636A69FC /* MenuApp.swift in Sources */,
+				7F991DA519F51881CA97CE0A /* MenuModels.swift in Sources */,
+				5ABC12700FFEC6FEBFED2E50 /* Orders.swift in Sources */,
+				709DF7497E87BF68D8BA46D2 /* OrdersListView.swift in Sources */,
+				49A10E2E97888F129B9F5228 /* RemoteImage.swift in Sources */,
+				0A448870CE5DCA5930A2901F /* RestockListView.swift in Sources */,
+				266209ABDB09F5926A3347CD /* RestockModels.swift in Sources */,
+				23EF7A5C5769AEC516B9B259 /* Secrets.swift in Sources */,
+				1CDB26870512834ACC639F73 /* SettingsView.swift in Sources */,
+				06CAFD6DEF080B85063E3EC2 /* SupabaseClient.swift in Sources */,
+				5085BFA71BB01F8C824936D2 /* VoiceRecorder.swift in Sources */,
+				07FDBA56C7904C77BFFEA71B /* WatchKeySync.swift in Sources */,
+				2CF57249FA6335ED3B2B3F48 /* WineDetailView.swift in Sources */,
+				B2AD5D5221EA8FB1D901FA45 /* WineListView.swift in Sources */,
+				E7C1FB282CFABCCB6A807980 /* WineModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1886E0F90EE6B0C3DEF2C73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE953380A1B0328578B3C763 /* APIKeyStore.swift in Sources */,
+				50946340D3A048FB8E60EF48 /* AnthropicClient.swift in Sources */,
+				4F30F32F67AEBF5D044F63C9 /* AppLogger.swift in Sources */,
+				404019C0C698AAA1F544545B /* ChatEngine.swift in Sources */,
+				BE6CFEE452DF95C0139CEFE1 /* CocktailModels.swift in Sources */,
+				BE5C65431F3BEA55E07783F9 /* ConfigModels.swift in Sources */,
+				51E308AB541B5224A1734863 /* Connectivity.swift in Sources */,
+				BC89DB30B32E67CBB53272D3 /* MenuModels.swift in Sources */,
+				EECFCA6F90719A0C892E2EB1 /* MenuWatchApp.swift in Sources */,
+				9B84E9521BE4C9A707EAB95B /* OpenAppIntent.swift in Sources */,
+				F5B652B5FE5579A4CF777E90 /* OrderOutbox.swift in Sources */,
+				77FA750D9DC49C7F53F2B231 /* Orders.swift in Sources */,
+				20D57FFCDB5A3EB914CF4DDC /* PhoneKeyReceiver.swift in Sources */,
+				6E861126DE1EF3D880C2BC0F /* Recorder.swift in Sources */,
+				C34E0C77C07468B905DE0324 /* RestockModels.swift in Sources */,
+				303969083D8B1DD85292F0F1 /* Secrets.swift in Sources */,
+				551241C184C5EEEEEBEA57B7 /* StayAwake.swift in Sources */,
+				7C418FDF5FBEBDF00323577D /* SupabaseClient.swift in Sources */,
+				77136A776E8BA4725D07A6D6 /* VoiceBorder.swift in Sources */,
+				23349182EEA8A961E665ACE3 /* VoiceCapture.swift in Sources */,
+				F85C4456AA010A6D610BC047 /* WatchAIClient.swift in Sources */,
+				601C3181F4DB3922BBAA4771 /* WatchChatHistory.swift in Sources */,
+				C9F377AD5A3EA67E06D2F909 /* WatchChatView.swift in Sources */,
+				3ED35655794976F662609109 /* WatchContentView.swift in Sources */,
+				AEA78E2939E47709675BF914 /* WatchOrdersView.swift in Sources */,
+				E6D115859229EB4E149121AD /* WatchRestockView.swift in Sources */,
+				2CCF5422A8B5B6A47A6D685D /* WatchSettingsView.swift in Sources */,
+				943CB814A95894A7052DA1B4 /* WineModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE3A83242D03B47511DD5492 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA97BEB2ECF814B880C83229 /* MenuWatchWidgets.swift in Sources */,
+				E93997B9F83C4E30548DD7B4 /* OpenAppIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65D6087EB1E9AA5BD75D7366 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E8B1A4072D1878E542705C2 /* MenuWatchWidgets */;
+			targetProxy = 3828E9F83329E7F90B426C9D /* PBXContainerItemProxy */;
+		};
+		BEAFB2620D03D8B0B1C153D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 199B36DCAE40FAE7DAE8B0F6 /* MenuWatch */;
+			targetProxy = F8D0FCB35D4C3A779BA76A84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1CFC716B56F7986150DCD1D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 44;
+				INFOPLIST_FILE = MenuWatchWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaredgantt.CapitalGrille.watch.widgets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		2EED82FC145DB1A2FE3E3906 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 44;
+				INFOPLIST_FILE = MenuWatch/Info.plist;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaredgantt.CapitalGrille.watch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		4E4686EF5DD41003E5456AFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 44;
+				INFOPLIST_FILE = MenuApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaredgantt.CapitalGrille;
+				PRODUCT_NAME = Menu;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8886C443625E818958B26768 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 44;
+				INFOPLIST_FILE = MenuWatch/Info.plist;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaredgantt.CapitalGrille.watch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		8CE5FFCEB18A7633E7157F51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 44;
+				INFOPLIST_FILE = MenuApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaredgantt.CapitalGrille;
+				PRODUCT_NAME = Menu;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		92BC934551532F2B9819A6AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = XMH4AVFC78;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		A6DA40593A29A4843347AEB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 44;
+				INFOPLIST_FILE = MenuWatchWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaredgantt.CapitalGrille.watch.widgets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		EFDD63281168147809A4357D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = XMH4AVFC78;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6EA47D74DD9A2F806A5376EC /* Build configuration list for PBXNativeTarget "MenuWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EED82FC145DB1A2FE3E3906 /* Debug */,
+				8886C443625E818958B26768 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		868200DC08FE959FE8FED208 /* Build configuration list for PBXNativeTarget "MenuWatchWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CFC716B56F7986150DCD1D4 /* Debug */,
+				A6DA40593A29A4843347AEB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BBA7EB3C197CB837681988F4 /* Build configuration list for PBXNativeTarget "Menu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E4686EF5DD41003E5456AFD /* Debug */,
+				8CE5FFCEB18A7633E7157F51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BEF4364E94C14D3EDCDD2803 /* Build configuration list for PBXProject "Menu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFDD63281168147809A4357D /* Debug */,
+				92BC934551532F2B9819A6AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0AA90E9163521C3E089B0670 /* Project object */;
+}
