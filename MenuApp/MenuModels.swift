@@ -261,6 +261,37 @@ private struct MenuDishRow: Decodable {
 
 private struct SeasonalProgramsRow: Decodable { let data: [SeasonalProgram] }
 
+// MARK: - Dish search
+
+/// Whether a dish matches a search: its name, description, menu line, serving
+/// piece, station, portion and garnish ingredients, talking points and notes.
+func dishMatches(_ dish: Dish, query q: String) -> Bool {
+    if dish.name.lowercased().contains(q) { return true }
+    if let d = dish.description?.lowercased(), d.contains(q) { return true }
+    if let mn = dish.menu_name?.lowercased(), mn.contains(q) { return true }
+    if let sp = dish.serving_piece?.lowercased(), sp.contains(q) { return true }
+    if let st = dish.station?.lowercased(), st.contains(q) { return true }
+    if let portion = dish.portion {
+        for p in portion {
+            if let ing = p.ingredient?.lowercased(), ing.contains(q) { return true }
+            if let am = p.amount?.lowercased(), am.contains(q) { return true }
+            if let pr = p.prep?.lowercased(), pr.contains(q) { return true }
+        }
+    }
+    if let garnish = dish.garnish {
+        for g in garnish {
+            if let ing = g.ingredient?.lowercased(), ing.contains(q) { return true }
+        }
+    }
+    if let tp = dish.talking_points {
+        for p in tp where p.lowercased().contains(q) { return true }
+    }
+    if let notes = dish.notes {
+        for n in notes where n.lowercased().contains(q) { return true }
+    }
+    return false
+}
+
 // MARK: - Seasonal program search helpers
 
 func seasonalWineMatches(_ w: SeasonalWine, query q: String) -> Bool {

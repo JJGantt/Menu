@@ -26,6 +26,7 @@
 		3A8FF966D311C0103A62601F /* CocktailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E7195ED58294BB30148EDD /* CocktailsListView.swift */; };
 		3ED35655794976F662609109 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BB4E75E069733D23E59CC /* WatchContentView.swift */; };
 		404019C0C698AAA1F544545B /* ChatEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5159463CCD6F85625950D2 /* ChatEngine.swift */; };
+		44069279330D7C78816F2FCA /* AssistantChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FC10991C08F6CE0DA084D2 /* AssistantChatView.swift */; };
 		49A10E2E97888F129B9F5228 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B4759428DB3198FD77FA0 /* RemoteImage.swift */; };
 		4F30F32F67AEBF5D044F63C9 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2834B352A3EFCE7914F7844 /* AppLogger.swift */; };
 		5085BFA71BB01F8C824936D2 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */; };
@@ -49,6 +50,7 @@
 		943CB814A95894A7052DA1B4 /* WineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F643FEC1FD2652B859D3A /* WineModels.swift */; };
 		9AC0E91D17C2472E636A69FC /* MenuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743F2D4C684D6FC4EF7D9399 /* MenuApp.swift */; };
 		9B84E9521BE4C9A707EAB95B /* OpenAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C33FFA31EF14720F97CC46 /* OpenAppIntent.swift */; };
+		9EA1361E162C49612352DDEF /* FoodMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5657AA48B25E2A2CC40F15F7 /* FoodMenuView.swift */; };
 		A97BDC8D45C0BCDCF1F6E203 /* AnthropicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406B4F58B54426428A8C54B /* AnthropicClient.swift */; };
 		AEA78E2939E47709675BF914 /* WatchOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1586166DD2F04DBA76641 /* WatchOrdersView.swift */; };
 		B2AD5D5221EA8FB1D901FA45 /* WineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269079311E9AE5347C3372E /* WineListView.swift */; };
@@ -57,13 +59,16 @@
 		BE5C65431F3BEA55E07783F9 /* ConfigModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F76F497D15DF13353AB552 /* ConfigModels.swift */; };
 		BE6CFEE452DF95C0139CEFE1 /* CocktailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F05DC25F62F4315AC66A53 /* CocktailModels.swift */; };
 		C34E0C77C07468B905DE0324 /* RestockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A64E8D91E511729CD41646 /* RestockModels.swift */; };
+		C63678395400A24865094FDF /* SeasonalProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F568ADB64F6F1B934885C3D /* SeasonalProgramView.swift */; };
 		C8B0DF1C37C1E97BB9E7B6E9 /* LiquorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4214A61372A61820DEC1D /* LiquorListView.swift */; };
 		C9F377AD5A3EA67E06D2F909 /* WatchChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A12FCD359229A535EEC3C92 /* WatchChatView.swift */; };
 		D11CA693F105C6D935D990F6 /* CocktailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F05DC25F62F4315AC66A53 /* CocktailModels.swift */; };
 		DE953380A1B0328578B3C763 /* APIKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE6B6B9B0D36176A90EDBE /* APIKeyStore.swift */; };
+		E6C0B8F65B140A92219D7E95 /* SharedUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66000212E62139B9981A68 /* SharedUI.swift */; };
 		E6D115859229EB4E149121AD /* WatchRestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38964BAD7474E8AB2B12EC68 /* WatchRestockView.swift */; };
 		E7C1FB282CFABCCB6A807980 /* WineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F643FEC1FD2652B859D3A /* WineModels.swift */; };
 		E93997B9F83C4E30548DD7B4 /* OpenAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C33FFA31EF14720F97CC46 /* OpenAppIntent.swift */; };
+		ED37FB7FE5CD1A9C76E778F1 /* MenuInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1061ECF5CF63725ABC5A37DA /* MenuInputBar.swift */; };
 		EECFCA6F90719A0C892E2EB1 /* MenuWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B028D80681A2858E746B6 /* MenuWatchApp.swift */; };
 		F34A12BAE4D0A44193E51463 /* ConfigModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F76F497D15DF13353AB552 /* ConfigModels.swift */; };
 		F5B652B5FE5579A4CF777E90 /* OrderOutbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE166629FFD816BA8D698AFF /* OrderOutbox.swift */; };
@@ -118,6 +123,7 @@
 		0B1F3FAABB6F1CDE9FA00212 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ECA3F6F1D6BCCFD82E7CB3E /* DishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailView.swift; sourceTree = "<group>"; };
 		0F312A5D9E609E64842A5273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1061ECF5CF63725ABC5A37DA /* MenuInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInputBar.swift; sourceTree = "<group>"; };
 		129F3712011ED0A6589A98E3 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 		1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */ = {isa = PBXFileReference; path = Secrets.swift.example; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 		41D51CF852A8477526C45307 /* WatchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSettingsView.swift; sourceTree = "<group>"; };
 		47299703DB80CFC80681FA1D /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		47F76F497D15DF13353AB552 /* ConfigModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigModels.swift; sourceTree = "<group>"; };
+		5657AA48B25E2A2CC40F15F7 /* FoodMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMenuView.swift; sourceTree = "<group>"; };
 		678D53F3F8E45DE4432E5638 /* WatchAIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAIClient.swift; sourceTree = "<group>"; };
 		7292BC43630422959E485F11 /* SupabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseClient.swift; sourceTree = "<group>"; };
 		743F2D4C684D6FC4EF7D9399 /* MenuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuApp.swift; sourceTree = "<group>"; };
@@ -149,10 +156,13 @@
 		94F703B5ED32463FE55A5B89 /* WatchKeySync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKeySync.swift; sourceTree = "<group>"; };
 		98FA8C2726FB2BCD024CCD90 /* VoiceBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBorder.swift; sourceTree = "<group>"; };
 		9C916CEAF9285AF945A3B936 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		9F568ADB64F6F1B934885C3D /* SeasonalProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalProgramView.swift; sourceTree = "<group>"; };
 		A269079311E9AE5347C3372E /* WineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineListView.swift; sourceTree = "<group>"; };
 		A2B5DC62EE87896737CB73C4 /* Menu.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Menu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A836F905EE043413621701F8 /* VoiceCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCapture.swift; sourceTree = "<group>"; };
 		ADF9068C96D178CD447EF78A /* Seed */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Seed; sourceTree = SOURCE_ROOT; };
+		C4FC10991C08F6CE0DA084D2 /* AssistantChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantChatView.swift; sourceTree = "<group>"; };
+		CA66000212E62139B9981A68 /* SharedUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUI.swift; sourceTree = "<group>"; };
 		D59F643FEC1FD2652B859D3A /* WineModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineModels.swift; sourceTree = "<group>"; };
 		D8F2E0430D896CC843507CB3 /* MenuWatchWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MenuWatchWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EA6A66EB1B8008C233E774 /* PhoneKeyReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKeyReceiver.swift; sourceTree = "<group>"; };
@@ -186,24 +196,29 @@
 				8BEE6B6B9B0D36176A90EDBE /* APIKeyStore.swift */,
 				F2834B352A3EFCE7914F7844 /* AppLogger.swift */,
 				0B1F3FAABB6F1CDE9FA00212 /* Assets.xcassets */,
+				C4FC10991C08F6CE0DA084D2 /* AssistantChatView.swift */,
 				1C5159463CCD6F85625950D2 /* ChatEngine.swift */,
 				34F05DC25F62F4315AC66A53 /* CocktailModels.swift */,
 				28E7195ED58294BB30148EDD /* CocktailsListView.swift */,
 				47F76F497D15DF13353AB552 /* ConfigModels.swift */,
 				E85B98EF2249766048EE3CEA /* ContentView.swift */,
 				0ECA3F6F1D6BCCFD82E7CB3E /* DishDetailView.swift */,
+				5657AA48B25E2A2CC40F15F7 /* FoodMenuView.swift */,
 				F5C5F0410D8D4AA0F92858BA /* Info.plist */,
 				FFA4214A61372A61820DEC1D /* LiquorListView.swift */,
 				743F2D4C684D6FC4EF7D9399 /* MenuApp.swift */,
+				1061ECF5CF63725ABC5A37DA /* MenuInputBar.swift */,
 				22AD760F0CE05E254709F422 /* MenuModels.swift */,
 				9C916CEAF9285AF945A3B936 /* Orders.swift */,
 				129F3712011ED0A6589A98E3 /* OrdersListView.swift */,
 				7C1B4759428DB3198FD77FA0 /* RemoteImage.swift */,
 				38642F2EF1365169ED273E39 /* RestockListView.swift */,
 				E4A64E8D91E511729CD41646 /* RestockModels.swift */,
+				9F568ADB64F6F1B934885C3D /* SeasonalProgramView.swift */,
 				E4B075B033F5D30D446288E3 /* Secrets.swift */,
 				19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */,
 				7A9A13A42F42E68D62E6D5EF /* SettingsView.swift */,
+				CA66000212E62139B9981A68 /* SharedUI.swift */,
 				7292BC43630422959E485F11 /* SupabaseClient.swift */,
 				1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */,
 				94F703B5ED32463FE55A5B89 /* WatchKeySync.swift */,
@@ -393,22 +408,27 @@
 				59FC0D82F8358C9977B3FB51 /* APIKeyStore.swift in Sources */,
 				A97BDC8D45C0BCDCF1F6E203 /* AnthropicClient.swift in Sources */,
 				1677B2944EC1775A1A344345 /* AppLogger.swift in Sources */,
+				44069279330D7C78816F2FCA /* AssistantChatView.swift in Sources */,
 				8FEB547408CE0EAF13999CE3 /* ChatEngine.swift in Sources */,
 				D11CA693F105C6D935D990F6 /* CocktailModels.swift in Sources */,
 				3A8FF966D311C0103A62601F /* CocktailsListView.swift in Sources */,
 				F34A12BAE4D0A44193E51463 /* ConfigModels.swift in Sources */,
 				FDBEF9CFCD73BD57A5FD1CFB /* ContentView.swift in Sources */,
 				7BC688E8506ECD0F517E9546 /* DishDetailView.swift in Sources */,
+				9EA1361E162C49612352DDEF /* FoodMenuView.swift in Sources */,
 				C8B0DF1C37C1E97BB9E7B6E9 /* LiquorListView.swift in Sources */,
 				9AC0E91D17C2472E636A69FC /* MenuApp.swift in Sources */,
+				ED37FB7FE5CD1A9C76E778F1 /* MenuInputBar.swift in Sources */,
 				7F991DA519F51881CA97CE0A /* MenuModels.swift in Sources */,
 				5ABC12700FFEC6FEBFED2E50 /* Orders.swift in Sources */,
 				709DF7497E87BF68D8BA46D2 /* OrdersListView.swift in Sources */,
 				49A10E2E97888F129B9F5228 /* RemoteImage.swift in Sources */,
 				0A448870CE5DCA5930A2901F /* RestockListView.swift in Sources */,
 				266209ABDB09F5926A3347CD /* RestockModels.swift in Sources */,
+				C63678395400A24865094FDF /* SeasonalProgramView.swift in Sources */,
 				23EF7A5C5769AEC516B9B259 /* Secrets.swift in Sources */,
 				1CDB26870512834ACC639F73 /* SettingsView.swift in Sources */,
+				E6C0B8F65B140A92219D7E95 /* SharedUI.swift in Sources */,
 				06CAFD6DEF080B85063E3EC2 /* SupabaseClient.swift in Sources */,
 				5085BFA71BB01F8C824936D2 /* VoiceRecorder.swift in Sources */,
 				07FDBA56C7904C77BFFEA71B /* WatchKeySync.swift in Sources */,
