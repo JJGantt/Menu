@@ -79,4 +79,8 @@ xcrun altool --upload-app \
     --apiKey "$KEY_ID" \
     --apiIssuer "$ISSUER_ID"
 
-echo "✓ done — build $next is uploading. Check App Store Connect → TestFlight in ~10 min."
+# --- public-link testers: external groups never pick up a build on their own ---
+echo "▸ adding build $next to capExt (waits for processing)"
+./scripts/testflight_public.py "$next"
+
+echo "✓ done — build $next is on TestFlight for the internal group and the public link."
