@@ -38,7 +38,8 @@ final class ChatEngine {
              history: [ChatTurn],
              sessionId: String,
              interactionId: UUID = UUID(),
-             onActivity: (@MainActor (String?) -> Void)? = nil) async throws -> ChatTurn {
+             onActivity: (@MainActor (String?) -> Void)? = nil,
+             onText: (@MainActor (String) -> Void)? = nil) async throws -> ChatTurn {
         let startedAt = Date()
 
         // The rule text comes from Supabase (app_content/system_prompt), or the copy saved by the
@@ -70,7 +71,8 @@ final class ChatEngine {
                 tools: tools,
                 interactionId: interactionId,
                 sessionId: sessionId,
-                onActivity: onActivity
+                onActivity: onActivity,
+                onText: onText
             )
             await logInteraction(answer: turn.answer, error: nil)
             return turn

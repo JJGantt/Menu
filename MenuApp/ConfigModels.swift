@@ -11,7 +11,7 @@ struct AppConfig {
     /// Owner (Jared's device): everything unlocked.
     static let owner = AppConfig(
         allowedModels:   ["haiku", "sonnet", "opus"],
-        defaultModel:    "sonnet"
+        defaultModel:    "opus"
     )
 
     /// Everyone else: Haiku only.
@@ -101,14 +101,16 @@ enum AIModel: String, CaseIterable, Identifiable {
         }
     }
 
-    /// The request's thinking settings. Answers here are short lookups where speed matters most, so
-    /// thinking is off wherever the model allows it. Opus 5.5 cannot turn it off (the API rejects
-    /// `disabled`), so it runs at the lowest effort instead. Haiku 4.5 thinks only when asked.
-    var thinkingParams: [String: Any] {
+    /// Settings added to every request on this model. Answers here are short lookups where speed
+    /// matters most: thinking is off wherever the model allows it, and Opus 5.5, which cannot turn it
+    /// off (the API rejects `disabled`), runs at the lowest effort and in fast mode, which answered in
+    /// about half the time of standard speed at twice the per-token price. Haiku 4.5 thinks only when
+    /// asked.
+    var requestParams: [String: Any] {
         switch self {
         case .haiku:  return [:]
         case .sonnet: return ["thinking": ["type": "disabled"]]
-        case .opus:   return ["output_config": ["effort": "low"]]
+        case .opus:   return ["output_config": ["effort": "low"], "speed": "fast"]
         }
     }
 
@@ -131,13 +133,21 @@ enum AIModel: String, CaseIterable, Identifiable {
         }
     }
 
+    /// Bumped when the default model changes, so a choice stored under an older default gives way
+    /// to the new one once.
+    private static let defaultsVersion = 2
+
     static var current: AIModel {
         get {
-            let raw = UserDefaults.standard.string(forKey: "model") ?? AIModel.sonnet.rawValue
-            let m = AIModel(rawValue: raw) ?? .sonnet
-            // Enforce gating — a stored model that isn't permitted falls back to
+            let d = UserDefaults.standard
+            if d.integer(forKey: "modelDefaultsVersion") < defaultsVersion {
+                d.removeObject(forKey: "model")
+                d.set(defaultsVersion, forKey: "modelDefaultsVersion")
+            }
+            // Enforce gating — a stored model that isn't permitted, or none at all, falls back to
             // the configured default.
-            if AppGate.allowedModels.contains(m.key) { return m }
+            if let raw = d.string(forKey: "model"), let m = AIModel(rawValue: raw),
+               AppGate.allowedModels.contains(m.key) { return m }
             return AIModel(key: AppGate.defaultModel) ?? .haiku
         }
         set { UserDefaults.standard.set(newValue.rawValue, forKey: "model") }

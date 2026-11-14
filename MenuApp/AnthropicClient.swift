@@ -41,7 +41,8 @@ struct AnthropicClient {
                               sessionId: String?,
                               finishAfterTools: Bool = false,
                               model: String? = nil,
-                              onActivity: (@MainActor (String?) -> Void)? = nil) async throws -> ChatTurn {
+                              onActivity: (@MainActor (String?) -> Void)? = nil,
+                              onText: (@MainActor (String) -> Void)? = nil) async throws -> ChatTurn {
         guard let apiKey = APIKeyStore.current, APIKeyStore.looksValid(apiKey) else {
             throw AnthropicError.noAPIKey
         }
@@ -57,11 +58,21 @@ struct AnthropicClient {
         // Loop: send → if tool_use, run handlers, append results, send again.
         // Cap at a reasonable number of turns to avoid infinite loops.
         var collectedText: [String] = []
+        // The answer so far, as `collectedText` will join it, handed to `onText` as each piece streams in.
+        var shown = ""
+        let streamText: ((String) async -> Void)? = onText.map { onText in
+            { piece in
+                shown += piece
+                let snapshot = (collectedText + [shown]).joined(separator: "\n")
+                await MainActor.run { onText(snapshot) }
+            }
+        }
         for _ in 0..<6 {
+            shown = ""
             let started = Date()
             let response: CallResponse
             do {
-                response = try await call(apiKey: apiKey, systemStable: systemStable, systemDynamic: systemDynamic, tools: tools, messages: messages, model: model)
+                response = try await call(apiKey: apiKey, systemStable: systemStable, systemDynamic: systemDynamic, tools: tools, messages: messages, model: model, onText: streamText)
             } catch {
                 let latency = Int(Date().timeIntervalSince(started) * 1000)
                 await AppLogger.shared.record(.init(
@@ -171,7 +182,8 @@ struct AnthropicClient {
                              systemDynamic: String,
                              tools: [AnthropicTool],
                              messages: [[String: Any]],
-                             model: String?) async throws -> CallResponse {
+                             model: String?,
+                             onText: ((String) async -> Void)?) async throws -> CallResponse {
         // Split system into two blocks: stable prefix (cached) + dynamic suffix.
         // Cache hits drop input token rate-limit cost dramatically.
         let systemBlocks: [[String: Any]] = [
@@ -188,11 +200,12 @@ struct AnthropicClient {
         var body: [String: Any] = [
             "model": model ?? Self.model,
             "max_tokens": 4096,
+            "stream": true,
             "system": systemBlocks,
             "messages": messages
         ]
-        // A model named by the caller (the order passes) takes its own thinking settings.
-        let params = model.map { AIModel(rawValue: $0)?.thinkingParams ?? [:] } ?? AIModel.current.thinkingParams
+        // A model named by the caller (the order passes) takes its own settings.
+        let params = model.map { AIModel(rawValue: $0)?.requestParams ?? [:] } ?? AIModel.current.requestParams
         for (k, v) in params { body[k] = v }
         if !tools.isEmpty {
             body["tools"] = tools.map { tool in
@@ -203,7 +216,21 @@ struct AnthropicClient {
                 ] as [String: Any]
             }
         }
+        do {
+            return try await stream(apiKey: apiKey, body: body, onText: onText)
+        } catch AnthropicError.httpError(429, _) where body["speed"] != nil {
+            // Fast mode has its own rate limit; at standard speed the same request still goes through.
+            body.removeValue(forKey: "speed")
+            return try await stream(apiKey: apiKey, body: body, onText: onText)
+        }
+    }
 
+    /// One streamed request. The response is rebuilt block by block from its events — the same content
+    /// a non-streamed request returns, thinking signatures included, so it can be sent back verbatim —
+    /// and each text delta is handed to `onText` as it arrives.
+    private static func stream(apiKey: String,
+                               body: [String: Any],
+                               onText: ((String) async -> Void)?) async throws -> CallResponse {
         var req = URLRequest(url: endpoint)
         req.httpMethod = "POST"
         req.setValue(apiKey, forHTTPHeaderField: "x-api-key")
@@ -213,23 +240,65 @@ struct AnthropicClient {
         req.httpBody = try JSONSerialization.data(withJSONObject: body)
         req.timeoutInterval = 30
 
-        let (data, resp) = try await URLSession.shared.data(for: req)
+        let (bytes, resp) = try await URLSession.shared.bytes(for: req)
         guard let http = resp as? HTTPURLResponse else { throw AnthropicError.requestFailed("No HTTP response") }
         guard (200..<300).contains(http.statusCode) else {
-            let msg = String(data: data, encoding: .utf8) ?? "?"
-            throw AnthropicError.httpError(http.statusCode, msg)
+            var data = Data()
+            for try await b in bytes { data.append(b) }
+            throw AnthropicError.httpError(http.statusCode, String(data: data, encoding: .utf8) ?? "?")
         }
-        guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let content = json["content"] as? [[String: Any]] else {
-            throw AnthropicError.decodeFailed
+
+        var content: [[String: Any]] = []
+        var current: [String: Any] = [:]
+        var partialJSON = ""
+        var stopReason: String?
+        var tokensIn: Int?
+        var tokensOut: Int?
+        for try await line in bytes.lines {
+            guard line.hasPrefix("data:"),
+                  let event = try? JSONSerialization.jsonObject(with: Data(line.dropFirst(5).utf8)) as? [String: Any],
+                  let type = event["type"] as? String else { continue }
+            switch type {
+            case "message_start":
+                let usage = (event["message"] as? [String: Any])?["usage"] as? [String: Any]
+                tokensIn = usage?["input_tokens"] as? Int
+            case "content_block_start":
+                current = event["content_block"] as? [String: Any] ?? [:]
+                partialJSON = ""
+            case "content_block_delta":
+                guard let delta = event["delta"] as? [String: Any] else { break }
+                switch delta["type"] as? String {
+                case "text_delta":
+                    let piece = delta["text"] as? String ?? ""
+                    current["text"] = (current["text"] as? String ?? "") + piece
+                    if let onText, !piece.isEmpty { await onText(piece) }
+                case "input_json_delta":
+                    partialJSON += delta["partial_json"] as? String ?? ""
+                case "thinking_delta":
+                    current["thinking"] = (current["thinking"] as? String ?? "") + (delta["thinking"] as? String ?? "")
+                case "signature_delta":
+                    current["signature"] = delta["signature"]
+                default: break
+                }
+            case "content_block_stop":
+                if current["type"] as? String == "tool_use" {
+                    current["input"] = partialJSON.isEmpty
+                        ? [String: Any]()
+                        : (try? JSONSerialization.jsonObject(with: Data(partialJSON.utf8))) ?? [String: Any]()
+                }
+                content.append(current)
+                current = [:]
+            case "message_delta":
+                stopReason = (event["delta"] as? [String: Any])?["stop_reason"] as? String ?? stopReason
+                tokensOut = (event["usage"] as? [String: Any])?["output_tokens"] as? Int ?? tokensOut
+            case "error":
+                let err = event["error"] as? [String: Any]
+                throw AnthropicError.requestFailed(err?["message"] as? String ?? "stream error")
+            default: break
+            }
         }
-        let usage = json["usage"] as? [String: Any]
-        return CallResponse(
-            content: content,
-            stopReason: json["stop_reason"] as? String,
-            tokensIn: usage?["input_tokens"] as? Int,
-            tokensOut: usage?["output_tokens"] as? Int
-        )
+        guard stopReason != nil else { throw AnthropicError.decodeFailed }
+        return CallResponse(content: content, stopReason: stopReason, tokensIn: tokensIn, tokensOut: tokensOut)
     }
 }
 

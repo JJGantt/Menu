@@ -15,6 +15,8 @@ struct WatchChatView: View {
     /// The tool calls made so far for `pending`, oldest first, drawn under it as StatusHub's watch draws
     /// a running turn's steps (`ActivityLines` there): one small violet monospace line each.
     @State private var toolCalls: [String] = []
+    /// The answer to `pending` so far, as it streams in; it takes the tool lines' place.
+    @State private var partialAnswer: String?
     private static let toolInk = Color(red: 0xb3 / 255, green: 0x9d / 255, blue: 0xdb / 255)
     private let pendingAnchor = "pending-anchor"
     @State private var errorMsg: String?
@@ -184,6 +186,12 @@ struct WatchChatView: View {
                                 .font(.system(size: 12, weight: .medium))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .id(pendingAnchor)
+                            if let partialAnswer, !partialAnswer.isEmpty {
+                                Text(partialAnswer)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 13))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            } else {
                             VStack(alignment: .leading, spacing: 4) {
                                 ForEach(Array(toolCalls.enumerated()), id: \.offset) { _, call in
                                     Text(call)
@@ -192,6 +200,7 @@ struct WatchChatView: View {
                                         .lineLimit(2)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
+                            }
                             }
                         }
                     }
@@ -337,6 +346,7 @@ struct WatchChatView: View {
         currentTask?.cancel()
         currentTask = nil
         pending = nil
+        partialAnswer = nil
         chatState = .idle
         WKInterfaceDevice.current().play(.failure)
     }
@@ -357,6 +367,7 @@ struct WatchChatView: View {
         lastPrompt = prompt
         pending = prompt
         toolCalls = []
+        partialAnswer = nil
         currentTask = Task {
             do {
                 let turn = try await WatchAIClient.send(
@@ -372,10 +383,12 @@ struct WatchChatView: View {
                         // `name({…})` with the input pretty-printed; one line on the wrist.
                         guard let activity else { return }
                         toolCalls.append(activity.split(whereSeparator: \.isWhitespace).joined(separator: " "))
-                    }
+                    },
+                    onText: { text in partialAnswer = text }
                 )
                 if Task.isCancelled { return }
                 pending = nil
+                partialAnswer = nil
                 history.append(turn)
                 // Strong two-pulse haptic when the answer lands.
                 WKInterfaceDevice.current().play(.notification)
@@ -384,6 +397,7 @@ struct WatchChatView: View {
             } catch {
                 if !Task.isCancelled {
                     pending = nil
+                    partialAnswer = nil
                     errorMsg = error.localizedDescription
                 }
             }

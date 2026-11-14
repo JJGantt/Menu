@@ -5,6 +5,7 @@ import SwiftUI
 struct AssistantChatView: View {
     let history: [ContentView.QAExchange]
     let pendingQuestion: String?
+    let partialAnswer: String?
     let busy: Bool
     let activity: String?
     let error: String?
@@ -22,6 +23,9 @@ struct AssistantChatView: View {
             }
             .onChange(of: pendingQuestion) { _ in
                 withAnimation { proxy.scrollTo("bottomAnchor", anchor: .bottom) }
+            }
+            .onChange(of: partialAnswer) { _ in
+                proxy.scrollTo("bottomAnchor", anchor: .bottom)
             }
         }
     }
@@ -97,8 +101,16 @@ struct AssistantChatView: View {
                             .fontWeight(.semibold)
                             .foregroundColor(.cgText)
                     }
-                    chatBubble(icon: "sparkles", iconColor: .cgAccent, iconAlignment: .center) {
-                        ProgressView().progressViewStyle(.circular).scaleEffect(0.7)
+                    if let partial = partialAnswer, !partial.isEmpty {
+                        chatBubble(icon: "sparkles", iconColor: .cgAccent) {
+                            Text(renderMarkdown(partial))
+                                .font(.callout)
+                                .foregroundColor(.cgText)
+                        }
+                    } else {
+                        chatBubble(icon: "sparkles", iconColor: .cgAccent, iconAlignment: .center) {
+                            ProgressView().progressViewStyle(.circular).scaleEffect(0.7)
+                        }
                     }
                 }
                 // Tool-use / activity indicator — at the BOTTOM so it's the most recent

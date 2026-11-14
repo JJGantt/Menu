@@ -40,6 +40,8 @@ struct ContentView: View {
     @State private var aiError: String?
     @State private var aiActivity: String?
     @State private var pendingQuestion: String?
+    /// The answer to `pendingQuestion` so far, as it streams in.
+    @State private var partialAnswer: String?
 
     struct QAExchange: Identifiable {
         let id = UUID()
@@ -197,7 +199,7 @@ struct ContentView: View {
     @ViewBuilder
     var contentArea: some View {
         if showAIResults {
-            AssistantChatView(history: aiHistory, pendingQuestion: pendingQuestion,
+            AssistantChatView(history: aiHistory, pendingQuestion: pendingQuestion, partialAnswer: partialAnswer,
                               busy: aiBusy, activity: aiActivity, error: aiError)
         } else if section == .wine {
             WineListView(store: bottleStore, searchText: searchText) { wine in
@@ -260,6 +262,7 @@ struct ContentView: View {
         aiBusy = true
         aiError = nil
         aiActivity = nil
+        partialAnswer = nil
         aiInput = ""
         pendingQuestion = question
         withAnimation { showAIResults = true }
@@ -270,6 +273,7 @@ struct ContentView: View {
                 await MainActor.run {
                     aiHistory.append(QAExchange(turn: turn))
                     pendingQuestion = nil
+                    partialAnswer = nil
                     aiBusy = false
                     aiActivity = nil
                 }
@@ -277,6 +281,7 @@ struct ContentView: View {
                 await MainActor.run {
                     aiError = error.localizedDescription
                     pendingQuestion = nil
+                    partialAnswer = nil
                     aiBusy = false
                     aiActivity = nil
                 }
@@ -294,8 +299,8 @@ struct ContentView: View {
     @MainActor
     private func askAnything(question: String, history: [ChatTurn]) async throws -> ChatTurn {
         let engine = ChatEngine(menuStore: store, bottleStore: bottleStore, restockStore: restockStore, cocktailStore: cocktailStore, surface: "ios")
-        return try await engine.ask(question: question, history: history, sessionId: aiSessionId) { activity in
-            self.aiActivity = activity
-        }
+        return try await engine.ask(question: question, history: history, sessionId: aiSessionId,
+                                    onActivity: { activity in self.aiActivity = activity },
+                                    onText: { text in self.partialAnswer = text })
     }
 }
