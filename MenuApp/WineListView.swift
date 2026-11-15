@@ -19,7 +19,6 @@ struct WineListView: View {
         ScrollView {
             content
         }
-        .scrollDismissesKeyboard(.immediately)
         .onAppear {
             if selectedViewId == nil {
                 selectedViewId = (store.views(for: "wine").first(where: { $0.is_default })

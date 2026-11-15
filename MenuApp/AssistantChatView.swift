@@ -16,7 +16,6 @@ struct AssistantChatView: View {
                 content
                 Color.clear.frame(height: 1).id("bottomAnchor")
             }
-            .scrollDismissesKeyboard(.immediately)
             .onAppear { proxy.scrollTo("bottomAnchor", anchor: .bottom) }
             .onChange(of: history.count) { _ in
                 withAnimation { proxy.scrollTo("bottomAnchor", anchor: .bottom) }

@@ -168,8 +168,13 @@ struct ContentView: View {
             .padding(.bottom, 8)
 
             // Content first, takes remaining space; input bar pinned below it.
+            // Scrolling or tapping anywhere above the input bar puts the keyboard away.
             contentArea
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .scrollDismissesKeyboard(.immediately)
+                .simultaneousGesture(TapGesture().onEnded {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                })
 
             MenuInputBar(
                 voice: voice,

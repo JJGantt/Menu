@@ -12,7 +12,6 @@ struct FoodMenuView: View {
 
     var body: some View {
         ScrollView { content }
-            .scrollDismissesKeyboard(.immediately)
     }
 
     private var content: some View {
