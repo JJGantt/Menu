@@ -25,7 +25,7 @@ struct ContentView: View {
     @State private var selectedCocktail: Cocktail?
     @State private var selectedSeasonalWine: SeasonalWine?
     @State private var showSettings = false
-    @State private var aiMode = true        // AI is the default field mode
+    @State private var aiMode = false       // search is the default field mode; the toggle switches to the assistant
     @State private var showAIResults = false  // chat overlay visibility
     @State private var aiInput = ""
     @State private var aiHistory: [QAExchange] = []
