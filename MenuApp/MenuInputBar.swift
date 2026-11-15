@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// The bar under every tab: the assistant's question field or the search
-/// field, the mic, the AI/search toggle, and below them settings and the chat
-/// controls.
+/// The bar under every tab, one row: settings and the chat toggle, the
+/// assistant's question field or the search field, then clear-chat, the mic and
+/// the AI/search toggle.
 struct MenuInputBar: View {
     @ObservedObject var voice: VoiceRecorder
     let section: TopSection
@@ -18,8 +18,16 @@ struct MenuInputBar: View {
     let onClearChat: () -> Void
 
     var body: some View {
-        VStack(spacing: 6) {
-        HStack(alignment: .top, spacing: 8) {
+        HStack(alignment: .top, spacing: 4) {
+                if !voice.isRecording {
+                    iconButton("gearshape", color: .cgTextMuted, action: onShowSettings)
+                    if hasChat {
+                        iconButton(showAIResults ? "bubble.left.fill" : "bubble.left",
+                                   color: showAIResults ? .cgAccent : .cgTextMuted) {
+                            withAnimation { showAIResults.toggle() }
+                        }
+                    }
+                }
                 if voice.isRecording {
                     HStack(alignment: .top, spacing: 8) {
                         PulsingMic()
@@ -77,62 +85,28 @@ struct MenuInputBar: View {
                 }
 
                 if voice.isRecording {
-                    Button(action: { _ = voice.stop() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title3)
-                            .foregroundColor(.cgTextMuted)
-                            .padding(8)
-                    }
-                    Button(action: primaryAIButtonTap) {
-                        Image(systemName: "arrow.up.circle.fill")
-                            .font(.title3)
-                            .foregroundColor(.green)
-                            .padding(8)
-                    }
+                    iconButton("xmark.circle.fill", color: .cgTextMuted) { _ = voice.stop() }
+                    iconButton("arrow.up.circle.fill", color: .green, action: primaryAIButtonTap)
                 } else {
+                    if showAIResults && hasChat {
+                        iconButton("trash", color: .cgTextMuted) { withAnimation { onClearChat() } }
+                    }
                     // Mic always available — destination depends on current mode.
-                    Button(action: { Task { await voice.start() } }) {
-                        Image(systemName: "mic.fill")
-                            .font(.title3)
-                            .foregroundColor(.cgAccent)
-                            .padding(8)
-                    }
+                    iconButton("mic.fill", color: .cgAccent) { Task { await voice.start() } }
                     // Toggle between AI and search modes.
-                    Button(action: { withAnimation { aiMode.toggle() } }) {
-                        Image(systemName: aiMode ? "magnifyingglass" : "sparkles")
-                            .font(.title3)
-                            .foregroundColor(aiMode ? .cgTextMuted : .cgAccent)
-                            .padding(8)
-                    }
+                    iconButton(aiMode ? "magnifyingglass" : "sparkles",
+                               color: aiMode ? .cgTextMuted : .cgAccent) { withAnimation { aiMode.toggle() } }
                 }
-            }
+        }
+    }
 
-            // Bottom toolbar: settings + chat-history toggle + clear (in chat with history)
-            HStack {
-                Button(action: onShowSettings) {
-                    Image(systemName: "gearshape")
-                        .font(.title3)
-                        .foregroundColor(.cgTextMuted)
-                        .padding(8)
-                }
-                if hasChat {
-                    Button(action: { withAnimation { showAIResults.toggle() } }) {
-                        Image(systemName: showAIResults ? "bubble.left.fill" : "bubble.left")
-                            .font(.title3)
-                            .foregroundColor(showAIResults ? .cgAccent : .cgTextMuted)
-                            .padding(8)
-                    }
-                }
-                Spacer()
-                if showAIResults && hasChat {
-                    Button(action: { withAnimation { onClearChat() } }) {
-                        Image(systemName: "trash")
-                            .font(.title3)
-                            .foregroundColor(.cgTextMuted)
-                            .padding(8)
-                    }
-                }
-            }
+    private func iconButton(_ symbol: String, color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(.title3)
+                .foregroundColor(color)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 4)
         }
     }
 
