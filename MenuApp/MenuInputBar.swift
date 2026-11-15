@@ -36,7 +36,7 @@ struct MenuInputBar: View {
                     .background(Color.cgCard)
                     .clipShape(RoundedRectangle(cornerRadius: 22))
                     .overlay(RoundedRectangle(cornerRadius: 22).stroke(Color.green.opacity(0.7), lineWidth: 1.5))
-                } else if aiMode || section != .restock {
+                } else {
                     HStack(spacing: 8) {
                         Image(systemName: aiMode ? "sparkles" : "magnifyingglass")
                             .foregroundColor(aiMode ? .cgAccent : .cgTextMuted)
@@ -74,8 +74,6 @@ struct MenuInputBar: View {
                     .background(Color.cgCard)
                     .clipShape(Capsule())
                     .overlay(Capsule().stroke(aiMode ? Color.cgAccent : Color.cgBorder, lineWidth: aiMode ? 1.5 : 1))
-                } else {
-                    Spacer()
                 }
 
                 if voice.isRecording {

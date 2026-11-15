@@ -7,12 +7,7 @@ enum TopSection: String, CaseIterable, Identifiable {
     case wine = "Wine"
     case liquor = "Liquor"
     case cocktails = "Cocktails"
-    case restock = "Restock"
-    case orders = "Orders"
     var id: String { rawValue }
-
-    /// The order list is the owner's alone (it sits behind the hub's owner-gated route).
-    static var shown: [TopSection] { allCases.filter { $0 != .orders || AppGate.isOwnerDevice } }
 }
 
 struct ContentView: View {
@@ -20,7 +15,6 @@ struct ContentView: View {
     @StateObject private var bottleStore = BottleStore()
     @StateObject private var restockStore = RestockStore()
     @StateObject private var cocktailStore = CocktailStore()
-    @StateObject private var orderStore = OrderStore()
     @StateObject private var voice = VoiceRecorder()
     @State private var searchText = ""
     @State private var section: TopSection = .food
@@ -113,7 +107,6 @@ struct ContentView: View {
                 if cocktailStore.cocktails.isEmpty { cocktailStore.load() }
                 Task {
                     await bottleStore.refreshFromSupabase()
-                    await restockStore.refresh()
                     #if DEBUG
                     // Simulator hooks, so a check needs no typing: `-simSection <tab>` opens a tab,
                     // `-simSearch <text>` searches, and `-simAsk "<question>"` asks the assistant once
@@ -139,11 +132,11 @@ struct ContentView: View {
 
     var mainContent: some View {
         VStack(spacing: 0) {
-            // Top: Food / Wine / Liquor / Restock segmented control.
+            // Top: Food / Wine / Liquor / Cocktails segmented control.
             // Tapping any segment also closes the AI conversation view — including
             // the currently-active segment (which native Picker wouldn't notify us about).
             HStack(spacing: 0) {
-                ForEach(TopSection.shown) { s in
+                ForEach(TopSection.allCases) { s in
                     Button(action: {
                         withAnimation {
                             section = s
@@ -214,10 +207,6 @@ struct ContentView: View {
                               searchText: searchText) { cocktail in
                 selectedCocktail = cocktail
             }
-        } else if section == .restock {
-            RestockListView(restockStore: restockStore, bottleStore: bottleStore)
-        } else if section == .orders {
-            OrdersListView(store: orderStore)
         } else {
             FoodMenuView(menu: store.menu, searchText: searchText,
                          onTapDish: { selectedDish = $0 },

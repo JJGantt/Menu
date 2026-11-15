@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		06CAFD6DEF080B85063E3EC2 /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7292BC43630422959E485F11 /* SupabaseClient.swift */; };
 		07FDBA56C7904C77BFFEA71B /* WatchKeySync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F703B5ED32463FE55A5B89 /* WatchKeySync.swift */; };
-		0A448870CE5DCA5930A2901F /* RestockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38642F2EF1365169ED273E39 /* RestockListView.swift */; };
 		0CB8E52AF2A3359CFBF37B1E /* Secrets.swift.example in Resources */ = {isa = PBXBuildFile; fileRef = 19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */; };
 		0D713FAC0ADDB1FAF7C1815A /* MenuWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F96327D5F6E573D6F837B40F /* MenuWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1677B2944EC1775A1A344345 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2834B352A3EFCE7914F7844 /* AppLogger.swift */; };
@@ -37,7 +36,6 @@
 		5ABC12700FFEC6FEBFED2E50 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C916CEAF9285AF945A3B936 /* Orders.swift */; };
 		601C3181F4DB3922BBAA4771 /* WatchChatHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B3C8D561DC767FCD7F72E /* WatchChatHistory.swift */; };
 		6E861126DE1EF3D880C2BC0F /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905CA1E5BFA215B9797AB7 /* Recorder.swift */; };
-		709DF7497E87BF68D8BA46D2 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F3712011ED0A6589A98E3 /* OrdersListView.swift */; };
 		77136A776E8BA4725D07A6D6 /* VoiceBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FA8C2726FB2BCD024CCD90 /* VoiceBorder.swift */; };
 		77FA750D9DC49C7F53F2B231 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C916CEAF9285AF945A3B936 /* Orders.swift */; };
 		789342F56B62DEAB4B19E368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F3FAABB6F1CDE9FA00212 /* Assets.xcassets */; };
@@ -124,7 +122,6 @@
 		0ECA3F6F1D6BCCFD82E7CB3E /* DishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailView.swift; sourceTree = "<group>"; };
 		0F312A5D9E609E64842A5273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1061ECF5CF63725ABC5A37DA /* MenuInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInputBar.swift; sourceTree = "<group>"; };
-		129F3712011ED0A6589A98E3 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 		1982EB7526F950DD78E42E03 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		19C5FFF7A33688C7A4D0B3F1 /* Secrets.swift.example */ = {isa = PBXFileReference; path = Secrets.swift.example; sourceTree = "<group>"; };
 		1A5AA01CAC3B89B22B0ED3A9 /* StayAwake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayAwake.swift; sourceTree = "<group>"; };
@@ -135,7 +132,6 @@
 		28E7195ED58294BB30148EDD /* CocktailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListView.swift; sourceTree = "<group>"; };
 		316B3C8D561DC767FCD7F72E /* WatchChatHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchChatHistory.swift; sourceTree = "<group>"; };
 		34F05DC25F62F4315AC66A53 /* CocktailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModels.swift; sourceTree = "<group>"; };
-		38642F2EF1365169ED273E39 /* RestockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockListView.swift; sourceTree = "<group>"; };
 		38964BAD7474E8AB2B12EC68 /* WatchRestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRestockView.swift; sourceTree = "<group>"; };
 		3B0BB4E75E069733D23E59CC /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
 		3D3BC46C3F9B74B39A1B9579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -210,9 +206,7 @@
 				1061ECF5CF63725ABC5A37DA /* MenuInputBar.swift */,
 				22AD760F0CE05E254709F422 /* MenuModels.swift */,
 				9C916CEAF9285AF945A3B936 /* Orders.swift */,
-				129F3712011ED0A6589A98E3 /* OrdersListView.swift */,
 				7C1B4759428DB3198FD77FA0 /* RemoteImage.swift */,
-				38642F2EF1365169ED273E39 /* RestockListView.swift */,
 				E4A64E8D91E511729CD41646 /* RestockModels.swift */,
 				9F568ADB64F6F1B934885C3D /* SeasonalProgramView.swift */,
 				E4B075B033F5D30D446288E3 /* Secrets.swift */,
@@ -421,9 +415,7 @@
 				ED37FB7FE5CD1A9C76E778F1 /* MenuInputBar.swift in Sources */,
 				7F991DA519F51881CA97CE0A /* MenuModels.swift in Sources */,
 				5ABC12700FFEC6FEBFED2E50 /* Orders.swift in Sources */,
-				709DF7497E87BF68D8BA46D2 /* OrdersListView.swift in Sources */,
 				49A10E2E97888F129B9F5228 /* RemoteImage.swift in Sources */,
-				0A448870CE5DCA5930A2901F /* RestockListView.swift in Sources */,
 				266209ABDB09F5926A3347CD /* RestockModels.swift in Sources */,
 				C63678395400A24865094FDF /* SeasonalProgramView.swift in Sources */,
 				23EF7A5C5769AEC516B9B259 /* Secrets.swift in Sources */,
