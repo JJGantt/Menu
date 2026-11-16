@@ -27,12 +27,16 @@ struct SettingsView: View {
                                 showKeyEditor = false
                             }
                             .foregroundColor(.secondary)
+                            .buttonStyle(.borderless)
                             Spacer()
                             Button("Save") {
                                 saveKey()
                             }
+                            .buttonStyle(.borderless)
                             .disabled(!APIKeyStore.looksValid(apiKeyDraft))
                         }
+                        // Two buttons in one Form row: without `.borderless` the whole row is one tap target
+                        // that fires both, Cancel first, so Save always ran against an emptied field.
                     } else {
                         HStack {
                             Text(apiKeyMasked.isEmpty ? "Not set" : apiKeyMasked)
