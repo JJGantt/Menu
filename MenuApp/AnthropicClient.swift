@@ -185,12 +185,15 @@ struct AnthropicClient {
                              model: String?,
                              onText: ((String) async -> Void)?) async throws -> CallResponse {
         // Split system into two blocks: stable prefix (cached) + dynamic suffix.
-        // Cache hits drop input token rate-limit cost dramatically.
+        // The default 5-minute cache, not the 1-hour one: questions come in with long gaps, so most
+        // first calls write the cache, and a 1-hour write costs 2x the input price where a 5-minute
+        // write costs 1.25x. Five minutes still covers the tool round trips within one question
+        // and quick follow-ups, which read it at 0.05x.
         let systemBlocks: [[String: Any]] = [
             [
                 "type": "text",
                 "text": systemStable,
-                "cache_control": ["type": "ephemeral", "ttl": "1h"]   // 1-hour cache (vs 5-min default)
+                "cache_control": ["type": "ephemeral"]
             ],
             [
                 "type": "text",
@@ -235,7 +238,6 @@ struct AnthropicClient {
         req.httpMethod = "POST"
         req.setValue(apiKey, forHTTPHeaderField: "x-api-key")
         req.setValue(version, forHTTPHeaderField: "anthropic-version")
-        req.setValue("extended-cache-ttl-2025-04-11", forHTTPHeaderField: "anthropic-beta")  // enables ttl:1h
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.httpBody = try JSONSerialization.data(withJSONObject: body)
         req.timeoutInterval = 30
