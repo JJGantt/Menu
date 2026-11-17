@@ -47,7 +47,9 @@ def main(version):
     else:
         sys.exit(f"build {version} was not processed within 30 minutes; add it to capExt by hand")
     bid = builds[0]["id"]
-    api(f"/v1/betaGroups/{CAPEXT}/relationships/builds", "POST", {"data": [{"type": "builds", "id": bid}]})
+    # Linked from the build's side: the group's side (/v1/betaGroups/{id}/relationships/builds) answers
+    # 404 "no resource of type builds" for a build that has just finished processing.
+    api(f"/v1/builds/{bid}/relationships/betaGroups", "POST", {"data": [{"type": "betaGroups", "id": CAPEXT}]})
     st = api(f"/v1/builds/{bid}/buildBetaDetail")["data"]["attributes"]["externalBuildState"]
     if st == "READY_FOR_BETA_SUBMISSION":
         api("/v1/betaAppReviewSubmissions", "POST",
