@@ -110,9 +110,17 @@ final class ChatEngine {
             return parts.joined(separator: " ")
         }
         func formatBottle(_ b: Bottle) -> String {
-            // NAME AND LOCATION ONLY. The model judges every bottle from its own knowledge: given the
-            // catalog's tasting notes it repeats them, and they decide its answer.
+            // OBJECTIVE FACTS ONLY: producer, company, region, ABV, grapes, location. Nothing descriptive
+            // (tasting notes, talking points, food pairing, pairing style, grape write-up) reaches the
+            // model: given those it repeats them, and they decide its answer.
             var s = "\(b.displayName) [id:\(b.id)]"
+            var facts: [String] = []
+            if let p = b.producer { facts.append(p) }
+            if let pp = b.producer_parent, pp != b.producer { facts.append(pp) }
+            if let loc = b.location { facts.append(loc) }
+            if let abv = b.abv { facts.append(abv) }
+            if let g = b.grapes, !g.isEmpty { facts.append(g.joined(separator: "/")) }
+            if !facts.isEmpty { s += " (" + facts.joined(separator: ", ") + ")" }
             let primary = locStr(b.primary)
             let backup  = locStr(b.backup)
             if let p = primary, let bk = backup { s += " @ \(p) | bk \(bk)" }
