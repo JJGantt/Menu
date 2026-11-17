@@ -155,7 +155,6 @@ final class ChatEngine {
         let restockTool = "update_restock"
         let addProductTool = "add_product"
         let deleteProductTool = "delete_product"
-        let pairingsTool = "get_pairings"
         let foodTool = "get_food_menu"
         let seasonalTool = "get_seasonal_program"
 
@@ -175,7 +174,7 @@ final class ChatEngine {
         // The rule blocks live in Supabase (app_content/system_prompt), with {{tool}}/{{data}}
         // placeholders that resolve to the live backend + data.
         let promptSub: [String: String] = [
-            "{{food_tool}}": foodTool, "{{pairings_tool}}": pairingsTool,
+            "{{food_tool}}": foodTool,
             "{{seasonal_tool}}": seasonalTool, "{{location_tool}}": toolName, "{{area_tool}}": areaTool,
             "{{restock_tool}}": restockTool, "{{add_product_tool}}": addProductTool, "{{delete_product_tool}}": deleteProductTool,
             "{{bottle_skeleton}}": bottleSkeleton, "{{areas}}": areasJSON, "{{cocktail_skeleton}}": cocktailSkel, "{{restock}}": restockJSON,
@@ -255,14 +254,14 @@ final class ChatEngine {
                 if matched.isEmpty { return "No dishes found in section '\(section!)'. Try calling without a section to see available section names." }
                 let enc = JSONEncoder()
                 enc.outputFormatting = [.prettyPrinted]
-                if let data = try? enc.encode(matched), let s = String(data: data, encoding: .utf8) { return s }
+                if let data = try? enc.encode(matched.map(\.forModel)), let s = String(data: data, encoding: .utf8) { return s }
                 return "(encode error)"
             }
         )
 
         let getSeasonalProgramTool = AnthropicTool(
             name: "get_seasonal_program",
-            description: "Get the current seasonal programs — the limited-time cards that run alongside the regular menu (their titles, dates, and item names are in the system prompt). Returns every program: each dish with its description and notes, each wine with its description, tasting notes, and suggested pairing. Call this when the user names a program, asks about one of its dishes or wines, or asks what is new, seasonal, or featured. They are NOT part of the regular menu — never call it for ordinary food, wine, or dish questions.",
+            description: "Get the current seasonal programs — the limited-time cards that run alongside the regular menu (their titles, dates, and item names are in the system prompt). Returns every program: each dish with its price, ingredients and notes, each wine with its producer, region and varietal. Call this when the user names a program, asks about one of its dishes or wines, or asks what is new, seasonal, or featured. They are NOT part of the regular menu — never call it for ordinary food, wine, or dish questions.",
             inputSchema: [
                 "type": "object",
                 "properties": [:],
@@ -272,9 +271,19 @@ final class ChatEngine {
                 _ = input
                 let programs = await menuStore.menu?.seasonal_programs ?? []
                 guard !programs.isEmpty else { return "(no seasonal programs running)" }
+                // Objective facts only, as for the regular menu and the bottles: no wine descriptions,
+                // tasting notes or suggested pairings, and no section's paired wines.
+                struct Wine: Encodable { let name: String; let producer: String?; let region: String?; let varietal: String? }
+                struct Section: Encodable { let title: String; let dishes: [Dish] }
+                struct Program: Encodable { let meta: SeasonalProgramMeta; let wines: [Wine]; let sections: [Section] }
+                let shown = programs.map { p in
+                    Program(meta: p.meta,
+                            wines: p.wines.map { Wine(name: $0.name, producer: $0.producer, region: $0.region, varietal: $0.varietal) },
+                            sections: p.sections.map { Section(title: $0.title, dishes: $0.dishes.map(\.forModel)) })
+                }
                 let enc = JSONEncoder()
                 enc.outputFormatting = [.prettyPrinted]
-                if let data = try? enc.encode(programs), let s = String(data: data, encoding: .utf8) { return s }
+                if let data = try? enc.encode(shown), let s = String(data: data, encoding: .utf8) { return s }
                 return "(encode error)"
             }
         )
@@ -614,69 +623,8 @@ final class ChatEngine {
             }
         )
 
-        let getPairingsTool = AnthropicTool(
-            name: "get_pairings",
-            description: "Get the curated wine pairings for a DISH (which wine styles go with it, with reasons and the bottles in each) or the dishes a WINE pairs with. ALWAYS call this for pairing questions ('what wine goes with the ribeye', 'what should I drink with the lobster mac', 'what does the Cabernet pair with'). These are hand-authored, mechanism-based pairings and the source of truth — do NOT improvise pairings from general knowledge when this can answer.",
-            inputSchema: [
-                "type": "object",
-                "properties": [
-                    "dish_name": ["type": "string", "description": "A dish name (or close phrase) to get its wine pairings."],
-                    "wine_id": ["type": "string", "description": "A wine's bottle id to get the dishes it pairs with."]
-                ],
-                "required": []
-            ],
-            handler: { input in
-                let dishName = (input["dish_name"] as? String) ?? ""
-                let wineId = (input["wine_id"] as? String) ?? ""
-                struct MD: Decodable { let id: String; let name: String }
-                struct W: Decodable { let id: String; let name: String?; let pairing_style: String? }
-                struct SP: Decodable { let style: String?; let dish_id: String?; let tier: String; let justification: String?; let leaves_out: String?; let standout_wine_id: String?; let standout_reason: String? }
-                let dishes: [MD] = (try? await SupabaseClient.shared.get(path: "menu_dishes?select=id,name")) ?? []
-                let wines: [W] = (try? await SupabaseClient.shared.get(path: "bottles?kind=eq.wine&deleted=eq.false&select=id,name,pairing_style")) ?? []
-                let wname = Dictionary(wines.map { ($0.id, $0.name ?? $0.id) }, uniquingKeysWith: { a, _ in a })
-                if !wineId.isEmpty {
-                    guard let style = wines.first(where: { $0.id == wineId })?.pairing_style else { return "\(wname[wineId] ?? wineId) has no pairing style set." }
-                    let enc = style.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? style
-                    let sp: [SP] = (try? await SupabaseClient.shared.get(path: "style_pairings?style=eq.\(enc)&select=dish_id,tier,standout_wine_id,standout_reason&order=sort_order.asc")) ?? []
-                    let nameBy = Dictionary(dishes.map { ($0.id, $0.name) }, uniquingKeysWith: { a, _ in a })
-                    var seen = Set<String>(); var lines: [String] = []
-                    for p in sp {
-                        guard let did = p.dish_id, let nm = nameBy[did], !seen.contains(nm) else { continue }
-                        seen.insert(nm)
-                        let star = (p.standout_wine_id == wineId && p.standout_reason != nil) ? " ★ \(p.standout_reason!)" : ""
-                        lines.append("[\(p.tier)] \(nm)\(star)")
-                    }
-                    return lines.isEmpty ? "No pairings found for \(wname[wineId] ?? wineId)." : "\(wname[wineId] ?? wineId) (as a \(style)) pairs with:\n" + lines.joined(separator: "\n")
-                }
-                if !dishName.isEmpty {
-                    let tgt = normalizeDishName(dishName)
-                    var slugs = dishes.filter { normalizeDishName($0.name) == tgt }.map { $0.id }
-                    if slugs.isEmpty { slugs = dishes.filter { normalizeDishName($0.name).contains(tgt) || tgt.contains(normalizeDishName($0.name)) }.map { $0.id } }
-                    guard let slug = slugs.first else { return "No dish matching '\(dishName)'." }
-                    let dn = dishes.first(where: { $0.id == slug })?.name ?? dishName
-                    let sp: [SP] = (try? await SupabaseClient.shared.get(path: "style_pairings?dish_id=eq.\(slug.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? slug)&select=style,tier,justification,leaves_out,standout_wine_id,standout_reason&order=sort_order.asc")) ?? []
-                    if sp.isEmpty { return "No curated pairings for \(dn)." }
-                    var out = ["Wine pairings for \(dn):", ""]
-                    for p in sp {
-                        out.append("[\(p.tier)] \(p.style ?? "?") — \(p.justification ?? "")")
-                        if let sid = p.standout_wine_id, let r = p.standout_reason { out.append("   ★ \(wname[sid] ?? sid): \(r)") }
-                        if let st = p.style {
-                            struct BN: Decodable { let name: String? }
-                            let bn: [BN] = (try? await SupabaseClient.shared.get(path: "bottles?kind=eq.wine&deleted=eq.false&pairing_style=eq.\(st.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? st)&select=name&order=name.asc")) ?? []
-                            let names = bn.compactMap { $0.name }
-                            if !names.isEmpty { out.append("   bottles: " + names.joined(separator: ", ")) }
-                        }
-                        out.append("")
-                    }
-                    if let lo = sp.first?.leaves_out, !lo.isEmpty { out.append("Not listed: \(lo)") }
-                    return out.joined(separator: "\n")
-                }
-                return "Provide either dish_name or wine_id."
-            }
-        )
-
         let tools: [AnthropicTool] = [
-            getFoodMenuTool, getSeasonalProgramTool, getPairingsTool,
+            getFoodMenuTool, getSeasonalProgramTool,
             updateTool, areasTool, restockToolDef, checkCabinetTool,
             addProductDef, deleteProductDef, setImageDef, updateDetailsDef,
         ]

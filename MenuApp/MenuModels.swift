@@ -187,6 +187,19 @@ struct Dish: Codable, Identifiable, Hashable {
     }
 }
 
+extension Dish {
+    /// The dish as the chat model may see it: objective facts only. The menu description, tasting notes
+    /// and talking points stay with the app's own screens; given them, the model repeats them and they
+    /// decide its answer.
+    var forModel: Dish {
+        Dish(name: name, section: section, page: page, price: price, calories: calories, serves: serves,
+             menu_name: menu_name, image: image, serving_piece: serving_piece, portion: portion,
+             garnish: garnish, to_bring: to_bring, questions_to_ask: questions_to_ask,
+             production_time: production_time, station: station, notes: notes, sizes: sizes,
+             variants: variants, ingredients: ingredients)
+    }
+}
+
 // MARK: - Ingredient (used for portion and garnish entries)
 
 struct Ingredient: Codable, Hashable {
@@ -403,8 +416,7 @@ func seasonalProgramSkeleton(_ programs: [SeasonalProgram]) -> String {
     return out.joined(separator: "\n")
 }
 
-/// Compact food menu for the assistant's prompt — name, price, a short
-/// description, and key ingredients per dish, grouped by menu and section. Lets
+/// Compact food menu for the assistant's prompt — name, price and key ingredients per dish, grouped by menu and section. Lets
 /// the model answer menu questions from context instead of a tool round-trip.
 /// Built from the live menu, so database edits flow through automatically.
 func foodMenuSkeleton(_ menu: MenuData?) -> String {
@@ -426,7 +438,6 @@ func foodMenuSkeleton(_ menu: MenuData?) -> String {
     func line(_ d: Dish) -> String {
         var bits = [d.name]
         if let p = d.price { bits.append("$\(p)") }
-        if let desc = d.description, !desc.isEmpty { bits.append(String(desc.prefix(140))) }
         let ing = ingredients(d)
         if !ing.isEmpty { bits.append(ing) }
         return bits.joined(separator: " — ")
