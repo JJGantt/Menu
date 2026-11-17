@@ -91,13 +91,13 @@ struct AnthropicClient {
                 tokensIn: response.tokensIn, tokensOut: response.tokensOut,
                 userInput: nil, finalAnswer: nil))
 
-            // Capture any plain-text blocks before/after tool_use.
-            for block in response.content {
-                if let type = block["type"] as? String, type == "text",
-                   let text = block["text"] as? String, !text.isEmpty {
-                    collectedText.append(text)
-                }
-            }
+            // Capture the response's text. One answer can arrive as several text blocks (an answer citing
+            // web search results is split at each citation), so a response's blocks are one piece of text.
+            let text = response.content
+                .filter { $0["type"] as? String == "text" }
+                .compactMap { $0["text"] as? String }
+                .joined()
+            if !text.isEmpty { collectedText.append(text) }
             // Web searches run on Anthropic's side within the request; each one is logged like a tool call.
             for block in response.content where block["type"] as? String == "server_tool_use" {
                 let input = (block["input"] as? [String: Any]) ?? [:]
