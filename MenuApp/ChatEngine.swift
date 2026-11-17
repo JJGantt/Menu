@@ -71,6 +71,7 @@ final class ChatEngine {
                 tools: tools,
                 interactionId: interactionId,
                 sessionId: sessionId,
+                webSearch: true,
                 onActivity: onActivity,
                 onText: onText
             )

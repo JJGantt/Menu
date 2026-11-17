@@ -40,6 +40,7 @@ struct AnthropicClient {
                               interactionId: UUID,
                               sessionId: String?,
                               finishAfterTools: Bool = false,
+                              webSearch: Bool = false,
                               model: String? = nil,
                               onActivity: (@MainActor (String?) -> Void)? = nil,
                               onText: (@MainActor (String) -> Void)? = nil) async throws -> ChatTurn {
@@ -72,7 +73,7 @@ struct AnthropicClient {
             let started = Date()
             let response: CallResponse
             do {
-                response = try await call(apiKey: apiKey, systemStable: systemStable, systemDynamic: systemDynamic, tools: tools, messages: messages, model: model, onText: streamText)
+                response = try await call(apiKey: apiKey, systemStable: systemStable, systemDynamic: systemDynamic, tools: tools, webSearch: webSearch, messages: messages, model: model, onText: streamText)
             } catch {
                 let latency = Int(Date().timeIntervalSince(started) * 1000)
                 await AppLogger.shared.record(.init(
@@ -97,7 +98,21 @@ struct AnthropicClient {
                     collectedText.append(text)
                 }
             }
+            // Web searches run on Anthropic's side within the request; each one is logged like a tool call.
+            for block in response.content where block["type"] as? String == "server_tool_use" {
+                let input = (block["input"] as? [String: Any]) ?? [:]
+                await AppLogger.shared.record(.init(
+                    timestamp: started, interactionId: interactionId, sessionId: sessionId,
+                    backend: "api", kind: "tool_call", toolName: block["name"] as? String,
+                    input: input, output: nil, error: nil, latencyMs: nil,
+                    tokensIn: nil, tokensOut: nil, userInput: nil, finalAnswer: nil))
+            }
 
+            // A long run of server-side searches pauses the turn; sending it back as is resumes it.
+            if response.stopReason == "pause_turn" {
+                messages.append(["role": "assistant", "content": response.content])
+                continue
+            }
             if response.stopReason != "tool_use" {
                 break
             }
@@ -181,6 +196,7 @@ struct AnthropicClient {
                              systemStable: String,
                              systemDynamic: String,
                              tools: [AnthropicTool],
+                             webSearch: Bool,
                              messages: [[String: Any]],
                              model: String?,
                              onText: ((String) async -> Void)?) async throws -> CallResponse {
@@ -210,15 +226,17 @@ struct AnthropicClient {
         // A model named by the caller (the order passes) takes its own settings.
         let params = model.map { AIModel(rawValue: $0)?.requestParams ?? [:] } ?? AIModel.current.requestParams
         for (k, v) in params { body[k] = v }
-        if !tools.isEmpty {
-            body["tools"] = tools.map { tool in
-                [
-                    "name": tool.name,
-                    "description": tool.description,
-                    "input_schema": tool.inputSchema
-                ] as [String: Any]
-            }
+        var toolDefs: [[String: Any]] = tools.map { tool in
+            [
+                "name": tool.name,
+                "description": tool.description,
+                "input_schema": tool.inputSchema
+            ]
         }
+        // Anthropic's own web search, run on their side: the basic version, which every model the app
+        // offers accepts (Haiku 4.5 does not take the newer one).
+        if webSearch { toolDefs.append(["type": "web_search_20250305", "name": "web_search", "max_uses": 5]) }
+        if !toolDefs.isEmpty { body["tools"] = toolDefs }
         do {
             return try await stream(apiKey: apiKey, body: body, onText: onText)
         } catch AnthropicError.httpError(429, _) where body["speed"] != nil {
@@ -280,10 +298,12 @@ struct AnthropicClient {
                     current["thinking"] = (current["thinking"] as? String ?? "") + (delta["thinking"] as? String ?? "")
                 case "signature_delta":
                     current["signature"] = delta["signature"]
+                case "citations_delta":
+                    if let c = delta["citation"] { current["citations"] = (current["citations"] as? [Any] ?? []) + [c] }
                 default: break
                 }
             case "content_block_stop":
-                if current["type"] as? String == "tool_use" {
+                if ["tool_use", "server_tool_use"].contains(current["type"] as? String) {
                     current["input"] = partialJSON.isEmpty
                         ? [String: Any]()
                         : (try? JSONSerialization.jsonObject(with: Data(partialJSON.utf8))) ?? [String: Any]()
